@@ -18,8 +18,8 @@ function buyPrinter(){
     document.getElementById('printerCost').innerHTML = nextCost;  // updates the printer cost for the user
 };
 
-function getDollars(){
-  cookieClick(printers);
+function mainLoop(){
+  getDollars(printers);
 };
 
 window.setInterval(mainLoop, 1000);
