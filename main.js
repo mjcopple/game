@@ -1,9 +1,22 @@
 var dollars = 0;
+var maxDollars = 1;
+
 var printers = 0;
 var trees = 0;
 
+var wallets = 0;
+
 function getDollars(number){
-  dollars = dollars + number;
+  if (dollars > maxDollars){
+    return;
+  }
+  
+  if (dollars + number > maxDollars) {
+    dollars = maxDollars;
+  } else {
+    dollars = dollars + number;
+  }
+  
   document.getElementById("dollars").innerHTML = dollars;
 };
 
@@ -29,6 +42,20 @@ function buyTree(){
     };
     var nextCost = Math.floor(100 * Math.pow(1.2,trees));
     document.getElementById('treeCost').innerHTML = nextCost;
+};
+
+function buyWallet(){
+    var walletCost = Math.floor(1 * Math.pow(3, wallets));
+    if(dollars >= walletCost){
+      wallets = wallets + 1;
+    	dollars = dollars - walletCost;
+      document.getElementById('dollars').innerHTML = dollars;
+      document.getElementById('wallets').innerHTML = wallets;
+    };
+    var nextCost = Math.floor(1 * Math.pow(3,wallets));
+    document.getElementById('walletCost').innerHTML = nextCost;
+    maxDollars = 1 + wallets * 100;
+    document.getElementById('maxDollars').innerHTML = maxDollars;
 };
 
 function mainLoop(){
