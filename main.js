@@ -32,8 +32,11 @@ function buyTree(){
 };
 
 function mainLoop(){
+  var oldDollars = dollars;
   getDollars(printers);
   getDollars(trees * 10);
+  var deltaDollars = dollars - oldDollars;
+  document.getElementById('dollarsPerTick').innerHTML = deltaDollars;
 };
 
 window.setInterval(mainLoop, 1000);
